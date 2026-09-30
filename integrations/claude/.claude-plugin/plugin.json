@@ -1,0 +1,8 @@
+{
+  "name": "repopolish",
+  "version": "0.1.0",
+  "description": "Evidence-grounded offline repository documentation audits and reviewed improvements.",
+  "author": { "name": "irrumi" },
+  "repository": "https://github.com/irrumi/RepoPolish",
+  "license": "MIT"
+}
