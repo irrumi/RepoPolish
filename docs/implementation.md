@@ -26,7 +26,9 @@ Initial implementation: 2026-09-30. Version 0.1.0, private local npm package.
 
 Windows development uses Node 26.5.0 and npm 11.17.0. All 42 tests also passed under
 the exact minimum Node 24.0.0 runtime in an isolated local installation. Node 24
-Linux/macOS/Windows jobs are configured; observed CI outcomes are separate from local tests.
+Linux/macOS/Windows jobs all passed for commit `d2cff77` in
+[GitHub Actions run 36719228009](https://github.com/irrumi/RepoPolish/actions/runs/36719228009)
+on 2026-09-30. This records an observed run, not a guarantee for future commits.
 
 Executed during development: strict type check, ESLint, fixture/security tests,
 fresh source `npm ci --ignore-scripts` and build, npm pack file inspection, local
@@ -50,8 +52,9 @@ preview redaction and explicit static capability-denial tests.
 
 ## Release limitations
 
-Registry/package/marketplace publication, tag creation, social posts and remote metadata
-mutations were not performed. Reporting and conduct channels await maintainer input.
+During the initial implementation, registry/package/marketplace publication, tag
+creation, social posts and remote metadata mutations were not performed.
+Reporting and conduct channels await maintainer input.
 Passing static findings do not certify legal compliance, vulnerability absence or
 general correctness. Remaining filesystem race and multi-file atomicity limits are
 documented in [security](security.md).
