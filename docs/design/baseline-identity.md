@@ -35,8 +35,8 @@ semantic key uses an unambiguous canonical JSON array, hashed with full SHA-256:
 Do not truncate context to fit a budget or silently discard a subject. If required
 identity data exceeds a documented limit or cannot be safely extracted, mark that
 occurrence unknown. Do not hash unknown/unsupported targets as if verified. Preserve
-link fragments, distinct target paths and package scopes; whitespace insertion
-alone must leave the key unchanged. Heading or document moves may legitimately
+link fragments, distinct target paths and package scopes; non-semantic blank-line
+shifts alone must leave the key unchanged. Heading or document moves may legitimately
 create new identities; this slice promises line-shift stability, not rename tracking.
 
 A key identifies a semantic group, not a unique occurrence. Keep a multiset count

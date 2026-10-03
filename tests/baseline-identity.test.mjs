@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { audit, exitCode } from '../dist/index.js';
+import { audit, inspect, exitCode } from '../dist/index.js';
 import { repo, tree } from './helpers.mjs';
 
 const corpus = JSON.parse(
@@ -76,6 +76,18 @@ for (const scenario of corpus.cases) {
       );
       assert.equal(shifted.evidence[0].line, original.evidence[0].line + 1);
       assert.notEqual(shifted.id, original.id);
+    }
+    if (scenario.operation === 'change-fragment') {
+      const links = (await inspect(root)).documents.get('README.md').links;
+      assert.ok(links.some((link) => link.url === 'guide.md#absent-c'));
+      assert.ok(links.every((link) => link.url !== 'guide.md#absent-b'));
+    }
+    if (scenario.operation === 'change-script') {
+      const claims = findings(after, 'script.missing').filter(
+        (f) => f.scope === '.',
+      );
+      assert.equal(claims.length, 1);
+      assert.match(claims[0].message, /script changed /);
     }
     if (!after.complete) {
       assert.equal(exitCode(after, 'none'), 2);
