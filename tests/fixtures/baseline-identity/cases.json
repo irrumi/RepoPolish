@@ -1,0 +1,26 @@
+{
+  "files": {
+    "package.json": { "name": "identity-fixture", "scripts": {} },
+    "README.md": "# Fixture\n## Usage\n[one](guide.md#absent-a) [two](guide.md#absent-b)\n`npm run missing`\n[again](guide.md#absent-a)\n",
+    "guide.md": "# Guide\n",
+    "packages/child/package.json": { "name": "child-fixture", "scripts": {} },
+    "packages/child/README.md": "# Child\n## Usage\n`npm run missing`\n"
+  },
+  "cases": [
+    { "name": "unchanged", "operation": "none", "expected": { "anchor": 3, "script": 2, "complete": true }, "future": { "existing": 5, "new": 0, "resolved": 0 } },
+    { "name": "blank-line", "operation": "prepend-blank-line", "expected": { "anchor": 3, "script": 2, "complete": true }, "future": { "existing": 5, "new": 0, "resolved": 0 } },
+    { "name": "changed-target", "operation": "change-fragment", "expected": { "anchor": 3, "script": 2, "complete": true }, "future": { "existing": 4, "new": 1, "resolved": 1 } },
+    { "name": "changed-script", "operation": "change-script", "expected": { "anchor": 3, "script": 2, "complete": true }, "future": { "existing": 4, "new": 1, "resolved": 1 } },
+    { "name": "repaired-target", "operation": "add-heading", "expected": { "anchor": 1, "script": 2, "complete": true }, "future": { "existing": 3, "new": 0, "resolved": 2 } },
+    { "name": "duplicate-added", "operation": "duplicate-link", "expected": { "anchor": 4, "script": 2, "complete": true }, "future": { "existing": 5, "new": 1, "resolved": 0 } },
+    { "name": "partial-scan", "operation": "malformed-manifest", "expected": { "anchor": 3, "script": 1, "complete": false }, "future": { "status": "unknown", "exit": 2, "resolved": 0 } }
+  ],
+  "futureCompatibility": [
+    { "name": "wrong-root", "change": "sourceId", "expected": "reject" },
+    { "name": "wrong-schema", "change": "schemaVersion", "expected": "reject" },
+    { "name": "wrong-tool", "change": "toolCompatibility", "expected": "reject" },
+    { "name": "wrong-scope", "change": "coverageDigest", "expected": "reject" },
+    { "name": "private-path", "change": "absoluteRoot", "expected": "reject" },
+    { "name": "source-snippet", "change": "snippet", "expected": "reject" }
+  ]
+}
